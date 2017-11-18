@@ -1,0 +1,38 @@
+/**********************************************
+1. crtate repo
+2. git init inworking folder
+2.1 git remote add origin http://github.com/user/repo.git < your repo url>
+3.  create  .gitignore file in working folder
+4. push nod_moules into .gitignore file
+5. git add .
+6. git commit -m "massge"
+7. git push origin master
+
+**************************************************/
+
+--err
+git config --global user.email "ch.wirut@gmail.com"
+git config --global user.name "thinkdd"
+
+
+/************************************
+git init
+git log
+git status
+git .ignore  ' add nod_moules in file .ignore
+
+
+git add .  | <filename>
+' 
+'***add  + commit
+git commit -am 'first commit' 
+
+git .... repository create repo on git hub
+git push ..... form repo status 
+/*********************************************
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/thinkdd/wecal.git
+git push -u origin master
