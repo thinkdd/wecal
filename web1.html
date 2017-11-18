@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ACAD NU</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- import font -->
+  <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+  <!-- import google icon -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+
+  <style>
+       #map {
+        height: 350px;
+        width: 100%;
+    }
+</style>
+<style>
+    .box {
+      position: relative;
+      display: inline-block;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .box::after {
+      content: "";
+      border-radius: 5px;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .box:hover {
+      -webkit-transform: scale(1.25, 1.25);
+      transform: scale(1.25, 1.25);
+  }
+
+  .box:hover::after {
+    opacity: 1;
+}
+</style>
+</head>
+<body style="font-family: 'Prompt', sans-serif;">
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-2 hidden-xs hidden-sm">
+        <img src="img/logo_acad.png" width="100">
+      </div>
+        <div class="col-md-8 hidden-xs hidden-sm">
+          <h1 style="margin-top: 40px;">กองบริการการศึกษา มหาวิทยาลัยนเรศวร</h1>
+        </div>
+        <div class="col-md-1 text-right">
+          <a>TH</a>|<a>EN</a>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default" style="border-radius: 0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand hidden-md hidden-lg" href="#"><img src="img/logo_acad.png" width="50" height="50" style="margin-top: -15px;"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav" style="margin-left: 30px;">
+        <li class="active"><a href="index.php">Home</a></li>
+        <li class="dropdown" style="margin-left: 10px;">
+          <a href="http://acad.nu.ac.th/devcourse/">หลักสูตร/คู่มือนิสิต</a>
+          
+        </li>
+        
+        <li class="dropdown" style="margin-left: 10px;">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">สมัครเข้าศึกษา<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.admission.nu.ac.th/" target="_blank">รับเข้าศึกษาระดับปริญญาตรี</a></li>
+            <li><a href="http://www.acad.nu.ac.th/acad_admission" target="_blank">รับเข้าศึกษาระดับบัณฑิตศึกษา</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown" style="margin-left: 10px;">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ระเบียบ/ประกาศ<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://reg2.nu.ac.th/registrar/calendar.asp?avs1063130174=1" target="_blank">ปฏิทินการศึกษา</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown" style="margin-left: 10px;">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">บริการ Online<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://www.reg2.nu.ac.th/registrar/?avs458137600=1" target="_blank">ระบบลงทะเบียน</a></li>
+            <li><a href="https://studentloan.nu.ac.th/" target="_blank">กองทุนกู้ยืมเพื่อการศึกษา มหาวิทยาลัยนเรศวร</a></li>
+            <li><a href="http://www.coop.nu.ac.th/" target="_blank">สหกิจศึกษา มหาวิทยาลัยนเรศวร</a></li>
+            <li><a href="nuform.php">ดาวน์โหลดแบบฟอร์ม</a></li>
+            <li><a href="http://www.acad.nu.ac.th/acad_2017/nurevenue.php">รายงานจัดสรรเงินค่าธรรมเนียมการศึกษา</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown" style="margin-left: 10px;">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">เกี่ยวกับหน่วยงาน<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="history.php">เกี่ยวกับหน่วยงาน</a></li>
+            <li><a href="ensurePlan.php">ประกันคุณภาพ</a></li>
+            <li><a href="doc.php">จุลสาร</a></li>
+            <li><a href="building_qs.php">อาคารเรียนรวม</a></li>
+            <li><a href="picAbout59.php">ภาพกิจกรม</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" style="background-color: #fe0101; height: 3px; margin-top: -20px;"></div>
+  </div>
+</div>
+
+<div class="container-fluid" style="margin-top: -17.5px;">
+  <div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <!--
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    -->
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+  <div class="item active">
+      <a href="http://www.admission.nu.ac.th" target="_blank"><img class="img-responsive" src="img/imgSlide/admission1-2561.jpg" width="1220" alt="รับสมัคร มน 2561"></a>
+    </div>
+    <div class="item">
+      <a href="pdf/event/กำหนดการโครงการสัมมนาเชิงปฏิบัติการฯ-7-8-สค-60-1.pdf" target="_blank"><img class="img-responsive" src="img/imgSlide/workbasededucation.jpg" width="1220"></a>
+    </div>
+    <!--
+     <div class="item">
+       <a href="http://acad.nu.ac.th/admission/undergrad.php" target="_blank"><img class="img-responsive" src="img/imgSlide/admission61.jpg" width="1220"></a>
+     </div>
+     -->
+    <div class="item">
+      <a href="qa_curriculum/curriculum.html"><img class="img-responsive" src="img/imgSlide/qa_curriculum.jpg" width="1220"></a>
+    </div> 
+
+    <div class="item">
+      <img class="img-responsive" src="img/imgSlide/king10.jpg" width="1220">
+    </div>
+    <div class="item">
+      <img class="img-responsive" src="img/imgSlide/king9.jpg" width="1220">
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+  <div class="col-md-1"></div>
+  </div>
+</div>
+
+<div class="container-fluid" style="background-color: #f2f2f2;">
+<br>
+  <div class="row text-center">
+    <div class="col-md-2">
+    <a href="http://www.admission.nu.ac.th/" target="_blank">
+      <img class="box" src="img/shortcut/admission.png" width="70">
+      <h5>รับเข้าศึกษาต่อ</h5></div>
+    </a>
+    <div class="col-md-2">
+    <a href="http://acad.nu.ac.th/devcourse/" target="_blank">
+      <img class="box" src="img/shortcut/reg.png" width="70">
+      <h5>งานพัฒนาหลักสูตร</h5></div>
+    </a>
+    <div class="col-md-2">
+    <a href="https://studentloan.nu.ac.th/" target="_blank">
+      <img class="box" src="img/shortcut/loan.png" width="70">
+      <h5>กองทุนกู้ยืมเพื่อการศึกษา (กยศ.)</h5></div>
+    </a>
+    <div class="col-md-2">
+    <a href="http://www.coop.nu.ac.th/" target="_blank">
+      <img class="box" src="img/shortcut/nu.png" width="70">
+      <h5>สหกิจศึกษา มหาวิทยาลัยนเรศวร</h5></div>
+    </a>
+    <div class="col-md-2">
+    <a href="http://www.coopnet.nu.ac.th/" target="_blank">
+      <img class="box" src="img/shortcut/co-opw.png" width="70">
+      <h5>สหกิจศึกษาเครือข่ายภาคเหนือตอนล่าง</h5></div>
+    </a>
+    <div class="col-md-2">
+    <a href="nuform.php" target="_blank">
+      <img class="box" src="img/shortcut/download.png" width="70">
+      <h5>Download แบบฟอร์ม</h5></div>
+    </a>
+  </div>
+  <div class="row text-center">
+    <div class="col-md-2">
+    <a href="http://eschedule.nu.ac.th/jaruaryporns/default.aspx" target="_blank">
+      <img class="box" src="img/shortcut/calendar.png" width="70">
+      <h5>ภารกิจผู้อำนวยการ</h5></div>
+    </a>
+    <div class="col-md-2">
+    <a href="#" target="_blank">
+      <img class="box" src="img/shortcut/calendar2.png" width="70">
+      <h5>ปฏิทินกิจกรรม กบศ.</h5></div>
+    </a>
+    <div class="col-md-2">
+      <a href="supportqacurriculum.php" target="_blank">
+      <img class="box" src="img/shortcut/ka.png" width="70">
+      <h5>ระบบและกลไกการดำเนินงานระดับมหาวิทยาลัย<br>เพื่อการประกันคุณภาพระดับหลักสูตร/คณะ/สถาบัน</h5>
+    </a>
+    </div>
+    <div class="col-md-2">
+    <div href="#" target="_blank">
+      <img class="box" src="img/shortcut/book.png" width="70">
+      <h5>หลักสูตรและสาขาวิชา</h5></div>
+    </div>
+    <div class="col-md-2">
+    <a href="http://www.reg.nu.ac.th/dbsupport/" target="_blank">
+      <img class="box" src="img/shortcut/regdb.png" width="60">
+      <h5>e-Registration DB</h5></a></div>
+    
+    <div class="col-md-2">
+    <a href="#" target="_blank">
+      <img class="box" src="img/shortcut/knowledge.png" width="70">
+      <h5>Knowledge Management</h5></a></div>
+  </div>
+  <div class="row text-center">
+  <div class="col-md-2">
+    <a href="academiccouncil.php" target="_blank">
+      <img class="box" src="img/shortcut/academiccouncil.png" width="70">
+      <h5>สรุปรายงาน<br>การประชุมสภาวิชาการ</h5></a>
+  </div>
+  <div class="col-md-2">
+    <a href="projectevent.php" target="_blank">
+      <img class="box" src="img/shortcut/siminar.png" width="70">
+      <h5>ดาวน์โหลดเอกสารประกอบการสัมมนา</h5></a>
+  </div>
+  <div class="col-md-2">
+  	<a href="pdf_file/loan/ปฏิทิน-กยศ-มน-60.pdf" target="_blank">
+      <img class="box" src="img/shortcut/carlendar3.png" width="70">
+      <h5>ปฏิทินการดำเนินงาน<br>กองทุนเงินให้กู้ยืมเพื่อการศึกษา ปีการศึกษา 2560</h5></a>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+</div>
+</div>
+
+<div class="container-fluid" style="background-color: #f2f2f2;">
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div>
+<h2>ข่าวประชาสัมพันธ์</h2>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span><img src="img/cap.png" width="20" height="20"></span> หน่วยรับเข้าศึกษา</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><span><img src="img/reg.png" width="20" height="20"></span> งานทะเบียน</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><span><img src="img/bath.png" width="20" height="20"></span> งานทุนกู้ยืม (กยศ.)</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+    <br>
+    <ul>
+    <li>
+    <p><a href="http://acad.nu.ac.th/admission/undergrad.php" target="_blank">ประกาศการรับสมัครเข้าศึกษา ประจำปีการศึกษา 2561</a></p>
+    </li>
+    <li>
+    <p><a href="pdf/admission/ระบบและกลไกลการรับเข้าศึกษา.pdf" target="_blank">กระบวนการรับสมัครคัดเลือกเข้าศึกษา ระดับปริญญาตรี และระดับบัณฑิตศึกษา ของมหาวิทยาลัยนเรศวร</a></p>
+    </li>
+    <li>
+    <p><a href="pdf/admission/croe%20process%20master%202.pdf" target="_blank">กระบวนการรับเข้าศึกษาระดับบัณฑิตศึกษา 
+และกระบวนการรับนิสิตต่างชาติ 
+(Core Process)</a></p>
+</li>
+<li>
+    <p><a href="http://www.acad.nu.ac.th/acad_admission/publish/2559/QU_Manual.html" target="_blank">ระเบียบการรับสมัครเข้าศึกษาต่อระดับปริญญาตรี ระบบรับตรง(โควตา) ปีการศึกษา 2559</a></p>
+    </li>
+    <li>
+    <p><a href="http://www.acad.nu.ac.th/acad_admission/publish/2559/SQU_Manual.html" target="_blank">ระเบียบการรับสมัครเข้าศึกษาต่อระดับปริญญาตรี โครงการพิเศษต่างๆ ปีการศึกษา 2559‏</a></p>
+    </li>
+    </ul>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+    <br>
+    <ul>
+    <li>
+      <p><a href="pdf/reg/ระดับบัณฑิตศึกษา.pptx" target="_blank">Presentation การบรรยายเกี่ยวกับข้อบังคับระดับบัณฑิตศึกษา โดย งานวิชาการ บัณฑิตวิทยาลัย</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/reg/2016.07.29-Presentation.rar" target="_blank">Presentation โครงการฝ่ายวิชาการพบอาจารย์ผู้สอน และนิสิตใหม่ระดับปริญญาตรี โดย.รองศาสตราจารย์ ดร.รสริน ว่องวิไลรัตน์ รองอธิการบดีฝ่ายวิชาการ</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/reg/เอกสารประกอบการประชุมเชิงปฏิบัติการ.rar" target="_blank">เอกสารประกอบการประชุมเชิงปฏิบัติการ "การกลั่นกรองหลักสูตรใหม่ และหลักสูตรที่ครบวงรอบตาม Outcome-Based Education เพื่อรองรับระบบประกันคุณภาพหลักสูตรตามเกณฑ์ AUN-QA"(6-7 ก.ค. 59)</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/reg/ปฏิทกนการศึกษา-2559.pdf" target="_blank">ปฏิทินการศึกษา ประจำปีการศึกษา 2559</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/reg/ประกาศ-กำหนดอัตราค่าธรรมเนียมเป็นรายครั้ง-ประจำปีการศึกษา-2558-เป็นต้นไป.pdf" target="_blank">ประกาศมหาวิทยาลัยนเรศวร เรื่องกำหนดอัตราค่าธรรมเนียมเป็นรายครั้ง ประจำปีการศึกษา 2558 เป็นต้นไป</a></p>
+      </li>
+      </ul>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="messages">
+      <br>
+      <ul>
+      <li>
+      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdcJi8Z64uyzS-1GqxowO4P2JSFo_b0orTuPGNHq1VcnbaHgA/viewform" target="_blank">แบบประเมินออนไลน์โครงการปัจฉิมนิเทศนิสิต กยศ.กรอ. ปีการศึกษา 2560  วันเสาร์ ที่ 18 พ.ย. 2560</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/loan/รายใหม่.pdf" target="_blank">ปฏิทินการดำเนินงานกองทุนเงินให้กู้ยืมเพื่อการศึกษา ประจำปีการศึกษา 2559 สำหรับนิสิตชั้นปีที่ 1 (รหัส 59) สำหรับนิสิต กยศ. รายเก่าต่อเนื่องที่ย้ายสถานศึกษา/รายใหม่ และ กรอ.รายใหม่</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/loan/รายเก่า.pdf" target="_blank">ปฏิทินการดำเนินงานกองทุนเงินให้กู้ยืมเพื่อการศึกษา ประจำปีการศึกษา 2559 สำหรับนิสิต กยศ.รายต่อเนื่อง (ปี 2-6) และ กรอ.รายต่อเนื่อง (รหัส 56-58)</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/loan/ปฏิทิน-2.2558.pdf" target="_blank">ปฏิทินการดำเนินงานกองทุนเงินให้กู้ยืมเพื่อการศึกษา กยศ./กรอ. ภาคเรียนที่ 2 ปีการศึกษา 2558</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/loan/หลักเกณฑ์การคัดกรอง-กยศ-59.pdf" target="_blank">หลักเกณฑ์การคัดกรองผู้กู้ยืม และหลักเกณฑ์การคัดกรองสถานศึกษา ปีการศึกษา 2559 (กองทุน กยศ.)</a></p>
+      </li>
+      <li>
+      <p><a href="pdf/loan/หลักเกณฑ์การคัดกรอง-กรอ-59.pdf" target="_blank">หลักเกณฑ์การคัดกรองผู้กู้ยืม และหลักเกณฑ์การคัดกรองสถานศึกษา ปีการศึกษา 2559 (กองทุน กรอ.)</a></p>
+      </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<div class="container-fluid" style="background-color: #f2f2f2;">
+  <div class="row">
+  <h1 class="text-center">กิจกรรม</h1>
+    <div class="col-md-4 text-center">
+      <img class="img-circle" src="img/event/19665120_10214099818279130_8717703997356201560_n.jpg" width="100" height="100">
+      <h5><strong><a href="pdf/event/22-23มิ.ย.60%20โครงการสัมมนาวิชาการ%20ระบบอาจารย์ที่ปรึกษา.pdf" target="_blank">โครงการสัมมนาวิชาการ ระบบอาจารย์ที่ปรึกษาและการพัฒนาแนวทางการจัดการศึกษาที่มุ่งผลลัพธ์</a></strong></h5>
+      <h6>25 พฤศจิกายน 2560</h6>
+    </div>
+    <div class="col-md-4 text-center">
+      <img class="img-circle" src="img/event/เยี่ยมบ้านนิสิต กยศ_170706_0105.jpg" width="100" height="100">
+      <h5><strong><a href="pdf/event/14-16%20มิ.ย.60%20โครงการเยี่ยมบ้านนิสิตกู้ยืมเงินกองทุนเงินให้กู้ยืมเพื่อการศึกษา%20ประจำปีการศึกษา%202559.pdf" target="_blank">โครงการเยี่ยมบ้านนิสิต กยศ. ประจำปีการศึกษา 2559</a></strong></h5>
+      <h6>14 - 16 มิถุนายน 2560</h6>
+    </div>
+    <div class="col-md-4 text-center">
+      <img class="img-circle" src="img/event/สหกิจไทย8.jpg" width="100" height="100">
+      <h5><strong><a href="pdf/event/6%20มิ.ย.60%20วันสหกิจศึกษาไทย%20ครั้งที่%208%20ประจำปี%2060.pdf" target="_blank">วันสหกิจศึกษาไทย ครั้งที่ 8</a></strong></h5>
+      <h6>6 มิถุนายน 2560</h6>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <h1>Contact Us</h1>
+      <p><i class="material-icons">&#xE84F;</i> Division of Academic Affairs Naresuan University</p>
+      <p><i class="material-icons">&#xE0C8;</i> กองบริการการศึกษา มหาวิทยาลัยนเรศวร พิษณุโลก 65000</p>
+      <p><i class="material-icons">&#xE8DF;</i> Monday to friday, 8.30 am to 4.30 pm</p>
+      <p><i class="material-icons">&#xE0B0;</i> 0-5596-8303&nbsp;(หน่วยเลขานุการ)</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-5596-8300&nbsp;(หน่วยทะเบียน)</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-5596-8305&nbsp;(หน่วยรับเข้าศึกษา)</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-5596-8316&nbsp;(งานทุนกู้ยืมเพื่อการศึกษา)</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-5596-8307&nbsp;(งานพัฒนาหลักสูตร)</p>
+      <p><i class="material-icons">&#xE555;</i> 0-5596-8321&nbsp;(หน่วยเลขานุการ)</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-5596-8304&nbsp;(หน่วยรับเข้าศึกษา)</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-5596-8316&nbsp;(งานทุนกู้ยืมเพื่อการศึกษา)</p>
+      <p><span><img src="img/facebook-box.png"></span><a href="https://www.facebook.com/acad.nu/?fref=ts" target="_blank" style="color: black;"> Facebook</a></p>
+    </div>
+    <div class="col-md-5">
+      <h1>Map to Reach Us</h1>
+      <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 16.746384, lng: 100.192312};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGpgld4H1_4udzTfDeY8Pt5iUdom4ealU&callback=initMap">
+    </script>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p>Division of Academic Affairs © 2016. All Rights Reserved. <br>Naresuan University</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
