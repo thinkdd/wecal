@@ -4,18 +4,22 @@ const request = require('request')
 const fs = require('fs')
 const cheerio = require('cheerio')
 
-const urls = [
-            'http://www.acad.nu.ac.th'
+const items =[
+                    {
+                        name:'a',
+                        url:'http://www.acad.nu.ac.th'
+                    },
+                    {
+                        name:'b',
+                        url:'http://www.reg.nu.ac.th'
+                    }  
             ]
 
-let i = 0
 const q = async.queue((task, callback) => {
 
-    request(task.url,(error, response, body) => {
-        $ = cheerio.load(body)
-        
-        console.log($('#ID').text())
-        
+    request(task.url, (error, response, body) => {
+        const $ = cheerio.load(body)        
+        //console.log($('#ID').text())        
         const txt = $('#ID p').text()
 
         fs.writeFile(task.name + ".html", txt, (err) => {
@@ -24,7 +28,8 @@ const q = async.queue((task, callback) => {
                 callback() 
             }                
             console.log('foo')
-            callback()                 
+            callback()     
+                        
         })       
 
     })
@@ -36,5 +41,5 @@ q.drain = () => {
 }
 
 // add some items to the queue
-q.push(urls)
+q.push(items)
 

@@ -2,16 +2,11 @@
 const async = require('async')
 const request = require('request')
 const fs = require('fs')
-const items = [
-                    {
-                        name:'a',
-                        url:'http://www.acad.nu.ac.th'
-                    },
-                    {
-                        name:'b',
-                        url:'http://www.reg.nu.ac.th'
-                    }  
+const urls = [
+                'http://www.acad.nu.ac.th',
+                ''
                 ]
+
 
 let i = 0
 const q = async.queue((url, callback) => {
@@ -35,5 +30,5 @@ q.drain = () => {
 }
 
 // add some items to the queue
-q.push(items)
+q.push(urls)
 
